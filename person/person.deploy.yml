@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: person
+  namespace: demo
+  labels:    
+    type: deployment
+    version: v1
+spec:
+  selector:
+    matchLabels:
+      app: person
+      type: pod
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: person
+        type: pod
+        version: v1
+    spec:
+      containers:
+      - name: person
+        image: personserver:1.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8090

@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-ingress
+spec:
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /findlocation
+        pathType: Prefix
+        backend:
+          service:
+            name: person
+            port:
+              number: 9000
+      - path: /location
+        pathType: Prefix
+        backend:
+          service:
+            name: location
+            port:
+              number: 9001

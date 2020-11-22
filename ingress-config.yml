@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  namespace: demo
+  # annotations:
+  #   nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /findlocation
+        pathType: Prefix
+        backend:
+          serviceName: person
+          servicePort: 9000
+      - path: /location
+        pathType: Prefix
+        backend:
+          serviceName: location
+          servicePort: 9001
